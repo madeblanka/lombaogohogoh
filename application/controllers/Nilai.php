@@ -15,6 +15,11 @@ class Nilai extends CI_Controller {
 	public function index()
     {
         $data["nilai"] = $this->Nilai_model->getAll();
+        // $data['total'] = $data['nilai']
+        // print_r('<pre>');
+        // var_dump($data['nilai']);die;
+        // print_r('</pre>');
+
         $this->load->view("nilai/dashboard", $data);
     }
 	public function print()
@@ -25,12 +30,17 @@ class Nilai extends CI_Controller {
     public function add()
     {
         $nilai = $this->Nilai_model;
-            $nilai->save();
-            redirect(site_url('banjar/tambah'));
+        $nilai->save();
+
+        return redirect(site_url('banjar/'));
     }
-    public function tambah()
+    public function tambah($id = null)
     {
-        $this->load->view('nilai/tambah');
+        if($id == null) {
+            return redirect(site_url('/banjar'));
+        }
+        $data["banjar"] = $this->Nilai_model->getDetailPage($id);
+        $this->load->view('nilai/tambah', $data);
     }
     public function edit($id = null)
     {

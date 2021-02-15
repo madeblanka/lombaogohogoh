@@ -21,7 +21,12 @@ class Banjar_model extends CI_Model
     
     public function getById($id)
     {
-        return $this->db->get_where($this->_table, ["id" => $id])->row();
+        return $this->db->get_where($this->_table, ["id" => $id])->result();
+    }
+    
+    public function isValid()
+    {
+        return $this->db->get_where('nilai', ["juri_id" => $this->session->userData('id')])->result();
     }
     public function totalbanjar()
     {

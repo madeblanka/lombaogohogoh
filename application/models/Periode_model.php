@@ -1,10 +1,10 @@
-<?php defined('BASEPATH') OR exit('No direct script access allowed');
+<?php defined('BASEPATH') or exit('No direct script access allowed');
 
-class Periode_mode extends CI_Model
+class Periode_model extends CI_Model
 {
     private $_table = "periode";
-	
-	public $id;
+
+    public $id;
     public $user_id;
     public $juri_id;
     public $periode;
@@ -19,14 +19,14 @@ class Periode_mode extends CI_Model
     {
         return $this->db->get($this->_table)->result();
     }
-    
+
     public function getById($id)
     {
         return $this->db->get_where($this->_table, ["id" => $id])->row();
     }
     public function totalbanjar()
     {
-        return $this->db->count_all('tb_banjar');   
+        return $this->db->count_all('tb_banjar');
     }
     public function save()
     {
@@ -39,8 +39,8 @@ class Periode_mode extends CI_Model
         $this->tahun = $post["tahun"];
         $this->keterangan = $post["keterangan"];
         $this->status = $post["status"];
-        $this->created_at = date("Y-m-d H:i:s");  
-        $this->updated_at = date("Y-m-d H:i:s");  
+        $this->created_at = date("Y-m-d H:i:s");
+        $this->updated_at = date("Y-m-d H:i:s");
         return $this->db->insert($this->_table, $this);
     }
 
@@ -56,7 +56,7 @@ class Periode_mode extends CI_Model
         $this->keterangan = $post["keterangan"];
         $this->status = $post["status"];
         $this->created_at = $post["created_at"];
-        $this->updated_at = date("Y-m-d H:i:s");  
+        $this->updated_at = date("Y-m-d H:i:s");
         return $this->db->update($this->_table, $this, array('id' => $post['id']));
     }
 

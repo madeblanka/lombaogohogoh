@@ -13,7 +13,7 @@
                             <tr>
                                <th>id nilai</th>
                                <th>banjar id</th>
-                               <th>juri id</th>
+                               <th>Nama Juri</th>
                                <th>wujud</th>
                                <th>keutuhan</th>
                                <th>bahan</th>
@@ -32,17 +32,19 @@
                       <tr>
                           <td><?php echo $nilai->id?></td>
                           <td><?php echo $nilai->banjar_id?></td>
-                          <td><?php echo $nilai->juri_id?></td>        
+                          <!-- <td><?php echo $nilai->nama?></td> -->
+                          <td><?php echo $nilai->juri_id?></td>
                           <td><?php echo $nilai->wujud?></td>  
                           <td><?php echo $nilai->keutuhan?></td>
                           <td><?php echo $nilai->bahan?></td>   
-                          <td><?php echo $nilai->tinggi?></td>        
+                          <td><?php echo $nilai->tinggi?></td>
                           <td><?php echo $nilai->unsur?></td>  
                           <td><?php echo $nilai->ekspresi?></td>
-                          <td><?php echo $nilai->keindahan?></td>     
-                          <td><?php echo $nilai->keserasian?></td>   
-                          <td><?php echo $nilai->inovasi?></td>            
+                          <td><?php echo $nilai->keindahan?></td>
+                          <td><?php echo $nilai->keserasian?></td>
+                          <td><?php echo $nilai->inovasi?></td>
                           <td>
+                          <?= $nilai->total ?>
                           <!-- <?php if($this->session->userdata('role') =="admin"): ?>
                           <a href="<?php echo site_url('nilai/print/') ?>"
                            href="#!" class="btn btn-small text-primary"><i class="fas fa-edit"></i> Print</a>
@@ -54,6 +56,7 @@
                            onclick="return confirm('Apakah Anda Yakin Ingin Menghapus Data Ini ?');" href="#!" class="btn btn-small text-danger"><i class="fas fa-trash"></i> Hapus</a>
                            <?php endif ?> -->
                           </td>
+                          <td><?= $nilai->avg ?></td>     
                       </tr>
                 <?php endforeach?>
                         </tbody>

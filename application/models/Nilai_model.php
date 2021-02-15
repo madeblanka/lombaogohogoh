@@ -21,12 +21,24 @@ class Nilai_model extends CI_Model
 
     public function getAll()
     {
+        // $query = $this->db->select('*')
+        //           ->from('nilai n')
+        //           ->join('juri j', 'n.id = j.id')
+        //           ->get();
+                  
+        // return $query->result();
+
         return $this->db->get($this->_table)->result();
     }
     
     public function getById($id)
     {
-        return $this->db->get_where($this->_table, ["id" => $id])->row();
+        return $this->db->get_where($this->_table, array('id' => $id))->row();
+    }
+    
+    public function getDetailPage($id)
+    {
+        return $this->db->get_where('banjar', array('id' => $id))->row();
     }
     public function totalnilai()
     {
@@ -34,7 +46,43 @@ class Nilai_model extends CI_Model
     }
     public function save()
     {
+
         $post = $this->input->post();
+        
+        $total  = $post["wujud"]
+                + $post["keutuhan"]
+                + $post["bahan"]
+                + $post["tinggi"]
+                + $post["unsur"]
+                + $post["ekspresi"]
+                + $post["keindahan"]
+                + $post["keserasian"]
+                + $post["inovasi"];
+        $avg = (float) $total / 9;
+
+        var_dump($post["wujud"]);
+        var_dump($post["keutuhan"]);
+        var_dump($post["bahan"]);
+        var_dump($post["tinggi"]);
+        var_dump($post["unsur"]);
+        var_dump($post["ekspresi"]);
+        var_dump($post["keindahan"]);
+        var_dump($post["keserasian"]);
+        var_dump($post["inovasi"]);
+        var_dump($total);
+        var_dump($post["wujud"] + $post["wujud"] 
+        + $post["keutuhan"]
+        + $post["bahan"]
+        + $post["tinggi"]
+        + $post["unsur"]
+        + $post["ekspresi"]
+        + $post["keindahan"]
+        + $post["keserasian"]
+        + $post["inovasi"]
+    );
+        
+        die;
+
         $this->id = $post["id"];
         $this->banjar_id = $post["banjar_id"];
         $this->juri_id = $post["juri_id"];
@@ -47,8 +95,11 @@ class Nilai_model extends CI_Model
         $this->keindahan = $post["keindahan"];
         $this->keserasian = $post["keserasian"];
         $this->inovasi = $post["inovasi"];
+        $this->total = $total;
+        $this->avg = $avg;
         $this->created_at = date("Y-m-d H:i:s");  
-        $this->updated_at = date("Y-m-d H:i:s");  
+        $this->updated_at = date("Y-m-d H:i:s");
+
         return $this->db->insert($this->_table, $this);
     }
 
