@@ -11,6 +11,8 @@ class Banjar extends CI_Controller {
 	public function index()
     {
         $data["banjar"] = $this->Banjar_model->getAll();
+        $data['valid'] = $this->Banjar_model->isValid();
+
         $this->load->view("banjar/dashboard", $data);
     }
 
